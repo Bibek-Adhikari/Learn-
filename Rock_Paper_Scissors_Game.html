@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .buttons {
+            margin: 20px 0;
+        }
+        .buttons input[type="button"] {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buttons input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .images img {
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            border-radius: 50%;
+            border: 3px solid #333;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="images">
+            <img src="https://th.bing.com/th/id/OIP.RXIDwoa72vz6XHjQNEk0DgHaGM?rs=1&pid=ImgDetMain" alt="Rock" id="rock">
+            <img src="https://th.bing.com/th/id/OIP.gqcdMPTS5KaRlEmC_53tjQHaHv?rs=1&pid=ImgDetMain" alt="Paper" id="paper">
+            <img src="https://th.bing.com/th/id/OIP.sau9drY3eifUf0tKPJVXjAHaEf?rs=1&pid=ImgDetMain" alt="Scissors" id="scissors">
+        </div>
+        <div class="buttons">
+            <input type="button" value="Rock" id="rock" onclick="playGame('rock')">
+            <input type="button" value="Paper" id="paper" onclick="playGame('paper')">
+            <input type="button" value="Scissors" id="scissors" onclick="playGame('scissors')">
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const pcChoice = choices[Math.floor(Math.random() * 3)];
+            
+            let result = `You chose ${userChoice}. Computer chose ${pcChoice}.<br>`;
+
+            if (userChoice === pcChoice) {
+                result += "It's a draw!";
+            } else if (
+                (userChoice === 'rock' && pcChoice === 'scissors') ||
+                (userChoice === 'paper' && pcChoice === 'rock') ||
+                (userChoice === 'scissors' && pcChoice === 'paper')
+            ) {
+                result += "You win!";
+            } else {
+                result += "You lose!";
+            }
+
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
